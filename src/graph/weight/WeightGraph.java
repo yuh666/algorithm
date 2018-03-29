@@ -1,10 +1,10 @@
-package graph;
+package graph.weight;
 
 /**
  * @author yuh
  * 图的接口
  */
-public interface Graph {
+public interface WeightGraph<Weight extends Number & Comparable> {
 
     /**
      * 几个顶点
@@ -24,14 +24,14 @@ public interface Graph {
      * @param w
      * @return
      */
-    boolean hasEdge(int v,int w);
+    boolean hasEdge(int v, int w);
 
     /**
      * 给定两个顶点添加一条边
      * @param v
      * @param w
      */
-    void addEdge(int v,int w);
+    void addEdge(int v, int w,Weight weight);
 
     /**
      * 打印整个连接情况
@@ -43,6 +43,6 @@ public interface Graph {
      * @param v
      * @return
      */
-    Iterable adj(int v);
+    Iterable<Edge<Weight>> adj(int v);
 
 }
