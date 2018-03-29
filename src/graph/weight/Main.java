@@ -19,6 +19,6 @@ public class Main {
         System.out.println("test G1 in Dense Graph:");
         g2.show();
 
-        System.out.println();
+        System.out.println("");
     }
 }
