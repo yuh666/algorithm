@@ -28,10 +28,9 @@ public interface WeightGraph<Weight extends Number & Comparable> {
 
     /**
      * 给定两个顶点添加一条边
-     * @param v
-     * @param w
+     * @param edge
      */
-    void addEdge(int v, int w,Weight weight);
+    void addEdge(Edge<Weight> edge);
 
     /**
      * 打印整个连接情况

@@ -16,7 +16,7 @@ public class ReadWeightGraph {
     private Scanner scanner;
 
     // 由于文件格式的限制，我们的文件读取类只能读取权值为Double类型的图
-    public ReadWeightGraph(WeightedGraph<Double> graph, String filename) {
+    public ReadWeightGraph(WeightGraph<Double> graph, String filename) {
 
         readFile(filename);
 
@@ -36,7 +36,7 @@ public class ReadWeightGraph {
                 Double weight = scanner.nextDouble();
                 assert v >= 0 && v < V;
                 assert w >= 0 && w < V;
-                graph.addEdge(v,w,weight);
+                graph.addEdge(new Edge<Double>(v,w,weight));
             }
         } catch (InputMismatchException e) {
             String token = scanner.next();

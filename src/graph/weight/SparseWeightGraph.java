@@ -87,17 +87,15 @@ public class SparseWeightGraph<Weight extends Number & Comparable> implements We
     }
 
     /**
-     * 给定两个顶点添加一条边
-     *
-     * @param v
-     * @param w
+     * 添加一条边
+     * @param edge
      */
     @Override
-    public void addEdge(int v, int w, Weight weight) {
+    public void addEdge(Edge<Weight> edge) {
 
-        vectors[v].add(new Edge<Weight>(v, w, weight));
-        if (!directed && v != w) {
-            vectors[w].add(new Edge<Weight>(w, v, weight));
+        vectors[edge.v()].add(new Edge<Weight>(edge));
+        if (!directed && edge.v() != edge.w()) {
+            vectors[edge.w()].add(new Edge<Weight>(edge.w(),edge.v(),edge.wt()));
         }
         m++;
     }

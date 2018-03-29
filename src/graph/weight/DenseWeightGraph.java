@@ -82,23 +82,21 @@ public class DenseWeightGraph<Weight extends Number & Comparable> implements Wei
     }
 
     /**
-     * 给定两个顶点添加一条边
-     *
-     * @param v
-     * @param w
+     * 添加一条边
+     * @param edge
      */
     @Override
-    public void addEdge(int v, int w,Weight weight) {
-        if (hasEdge(v, w)) {
-            matrix[v][w] = null;
+    public void addEdge(Edge<Weight> edge) {
+        if (hasEdge(edge.v(), edge.w())) {
+            matrix[edge.v()][ edge.w()] = null;
             if (!directed) {
-                matrix[w][v] = null;
+                matrix[ edge.v()][ edge.w()] = null;
             }
             m--;
         }
-        matrix[v][w] = new Edge<Weight>(v,w,weight);
+        matrix[ edge.v()][ edge.w()] = new Edge<Weight>(edge);
         if (!directed) {
-            matrix[w][v] = new Edge<Weight>(w,v,weight);
+            matrix[ edge.w()][ edge.v()] = new Edge<Weight>(edge);
         }
         m++;
     }
