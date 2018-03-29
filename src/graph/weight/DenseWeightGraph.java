@@ -110,9 +110,9 @@ public class DenseWeightGraph<Weight extends Number & Comparable> implements Wei
             Edge<Weight>[] vectors = this.matrix[i];
             for (int j = 0; j < vectors.length; j++) {
                 if(vectors[j] == null){
-                    System.out.print("NULL ");
+                    System.out.print("NULL\t");
                 }
-                System.out.print(vectors[j] + " ");
+                System.out.print(vectors[j] + "\t");
             }
             System.out.println();
         }
