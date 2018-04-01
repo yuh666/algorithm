@@ -1,4 +1,4 @@
-package graph.weight.prim;
+package graph.weight.prim2;
 
 import graph.weight.Edge;
 import graph.weight.ReadWeightGraph;
@@ -18,13 +18,13 @@ public class Main {
 
         // Test Lazy Prim MST
         System.out.println("Test Lazy Prim MST:");
-        Kru kru = new Kru(g);
-        List<Edge<Double>> mst = kru.mstEdges();
+        PrimMST<Double> lazyPrimMST = new PrimMST<Double>(g);
+        List<Edge<Double>> mst = lazyPrimMST.mstEdges();
         for (int i = 0; i < mst.size(); i++) {
 
             System.out.println(mst.get(i));
         }
-        System.out.println("The MST weight is: " + kru.result());
+        System.out.println("The MST weight is: " + lazyPrimMST.result());
 
         System.out.println();
     }
