@@ -1,5 +1,8 @@
 package heap2;
 
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * 最小堆
  */
@@ -83,6 +86,26 @@ public class MaxHeap<T extends Comparable> {
             swap(k, j);
             k = j;
         }
+    }
+
+    /**
+     * 批量添加 添加的都是子类 保证拥有T的方法
+     *
+     * @param list
+     */
+    public void insert(List<? extends T> list) {
+        for (T t : list) {
+            insert(t);
+        }
+    }
+
+    /**
+     * 获取所有 取出之后以T的姿态显示
+     *
+     * @return
+     */
+    public List<? super T> getAll() {
+        return Arrays.asList(data);
     }
 
     /**
