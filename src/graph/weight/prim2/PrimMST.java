@@ -2,7 +2,6 @@ package graph.weight.prim2;
 
 import graph.weight.Edge;
 import graph.weight.WeightGraph;
-import graph.weight.prim.MinHeap;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class PrimMST<Weight extends Number & Comparable> {
     private boolean[] marked;
     private List<Edge<Weight>> edges;
     private Number totalWeight;
-    private MinIndexHeap<Weight> minIndexHeap;
+    private IndexMinHeap<Weight> minIndexHeap;
     private Edge<Weight>[] edgeTo;
 
     public PrimMST(WeightGraph graph) {
@@ -23,7 +22,7 @@ public class PrimMST<Weight extends Number & Comparable> {
         marked = new boolean[graph.V()];
         edgeTo = (Edge<Weight>[]) new Edge[graph.V()];
         edges = new ArrayList<Edge<Weight>>();
-        minIndexHeap = new MinIndexHeap<>(graph.V());
+        minIndexHeap = new IndexMinHeap<>(graph.V());
         //从第一个节点开始遍历
         visit(0);
 
@@ -51,7 +50,7 @@ public class PrimMST<Weight extends Number & Comparable> {
                     minIndexHeap.insert(other, edge.wt());
                     edgeTo[other] = edge;
                 } else if (edgeTo[other].wt().compareTo(edge.wt()) > 0) {
-                    minIndexHeap.replaceByIndex(other, edge.wt());
+                    minIndexHeap.change(other, edge.wt());
                     edgeTo[other] = edge;
                 }
             }

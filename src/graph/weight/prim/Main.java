@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        String filename = "testG1.txt";
+       /* String filename = "testG1.txt";
         int V = 8;
 
         SparseWeightGraph<Double> g = new SparseWeightGraph<Double>(V, false);
@@ -26,6 +26,6 @@ public class Main {
         }
         System.out.println("The MST weight is: " + kru.result());
 
-        System.out.println();
+        System.out.println();*/
     }
 }

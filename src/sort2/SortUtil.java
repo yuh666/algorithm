@@ -114,7 +114,7 @@ public class SortUtil {
                 arr[k] = aux[i++];
             } else if (i > mid) {
                 arr[k] = aux[j++];
-            } else if (arr[i].compareTo(arr[j]) < 0) {
+            } else if (aux[i].compareTo(aux[j]) < 0) {
                 arr[k] = aux[i++];
             } else {
                 arr[k] = arr[j++];
