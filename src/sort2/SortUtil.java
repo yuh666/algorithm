@@ -110,13 +110,13 @@ public class SortUtil {
         System.arraycopy(arr, 0, aux, 0, arr.length);
         int i = l, j = mid + 1;
         for (int k = l; k <= r; k++) {
-            if (k > mid + 1) {
+            if (j > r) {
+                arr[k] = aux[i++];
+            } else if (i > mid) {
                 arr[k] = aux[j++];
-            }else if(k < mid+1){
+            } else if (arr[i].compareTo(arr[j]) < 0) {
                 arr[k] = aux[i++];
-            }else if(arr[i].compareTo(arr[j]) < 0){
-                arr[k] = aux[i++];
-            }else{
+            } else {
                 arr[k] = arr[j++];
             }
         }
