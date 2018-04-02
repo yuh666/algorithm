@@ -159,7 +159,10 @@ public class BST<K extends Comparable<K>, V> {
      * @param node
      */
     private void preOrder(Node node) {
-        System.out.print(root.key + ",");
+        if(node == null){
+            return;
+        }
+        System.out.print(node.key + ",");
         preOrder(node.left);
         preOrder(node.right);
     }
@@ -177,8 +180,11 @@ public class BST<K extends Comparable<K>, V> {
      * @param node
      */
     private void inOrder(Node node) {
+        if(node == null){
+            return;
+        }
         inOrder(node.left);
-        System.out.print(root.key + ",");
+        System.out.print(node.key + ",");
         inOrder(node.right);
     }
 
@@ -195,9 +201,12 @@ public class BST<K extends Comparable<K>, V> {
      * @param node
      */
     private void postOrder(Node node) {
+        if(node == null){
+            return;
+        }
         preOrder(node.left);
         preOrder(node.right);
-        System.out.print(root.key + ",");
+        System.out.print(node.key + ",");
     }
 
     /**
@@ -351,7 +360,45 @@ public class BST<K extends Comparable<K>, V> {
         return node;
     }
 
+    /**
+     * 测试二分搜索树
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
+
+        int N = 100;
+
+        // 创建一个数组，包含[0...N)的所有元素
+        Integer[] arr = new Integer[N];
+        for (int i = 0; i < N; i++) {
+            arr[i] = new Integer(i);
+        }
+
+        // 打乱数组顺序
+        for (int i = 0; i < N; i++) {
+            int pos = (int) (Math.random() * (i + 1));
+            Integer t = arr[pos];
+            arr[pos] = arr[i];
+            arr[i] = arr[pos];
+        }
+
+        BST<Integer, String> bst = new BST<Integer, String>();
+        for (int i = 0; i < N; i++) {
+            bst.insert(arr[i], Integer.toString(arr[i]));
+        }
+
+        /*for (int i = 0; i < 2 * N; i++) {
+            String res = bst.search(new Integer(i));
+            if (i < N) {
+                assert res.equals(Integer.toString(arr[i]));
+            } else {
+                assert res == null;
+            }
+        }*/
 
 
+        bst.inOrder();
+    }
 
 }
