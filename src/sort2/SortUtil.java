@@ -55,21 +55,74 @@ public class SortUtil {
         }
         int lt = l, i = l + 1, gt = r + 1;
         Comparable e = arr[l];
-        while(i < gt){
-            if(arr[i].compareTo(e) > 0){
-                swap(arr,--gt,i);
-            }else if(arr[i].compareTo(e) < 0){
-                swap(arr,++lt,i++);
-            }else{
-                i ++;
+        while (i < gt) {
+            if (arr[i].compareTo(e) > 0) {
+                swap(arr, --gt, i);
+            } else if (arr[i].compareTo(e) < 0) {
+                swap(arr, ++lt, i++);
+            } else {
+                i++;
             }
         }
-        swap(arr,l,lt);
-        threeWays(arr,l,lt-1);
-        threeWays(arr,gt,r);
+        swap(arr, l, lt);
+        threeWays(arr, l, lt - 1);
+        threeWays(arr, gt, r);
     }
 
-    private static void swap(Comparable[] arr,int a,int b){
+    /**
+     * 归并排序
+     *
+     * @param arr
+     */
+    public static void mergeSort(Comparable[] arr) {
+        Comparable[] aux = new Comparable[arr.length];
+        mergeSortAux(arr, aux, 0, arr.length - 1);
+    }
+
+    /**
+     * 排序辅助类
+     *
+     * @param arr
+     * @param aux
+     * @param l
+     * @param r
+     */
+    private static void mergeSortAux(Comparable[] arr, Comparable[] aux, int l, int r) {
+        if (l >= r) {
+            return;
+        }
+        int mid = (r - l) / 2 + l;
+        mergeSortAux(arr, aux, l, mid);
+        mergeSortAux(arr, aux, mid + 1, r);
+        merge(arr, aux, l, r, mid);
+    }
+
+    /**
+     * 归并过程
+     *
+     * @param arr
+     * @param aux
+     * @param l
+     * @param r
+     * @param mid
+     */
+    private static void merge(Comparable[] arr, Comparable[] aux, int l, int r, int mid) {
+        System.arraycopy(arr, 0, aux, 0, arr.length);
+        int i = l, j = mid + 1;
+        for (int k = l; k <= r; k++) {
+            if (k > mid + 1) {
+                arr[k] = aux[j++];
+            }else if(k < mid+1){
+                arr[k] = aux[i++];
+            }else if(arr[i].compareTo(arr[j]) < 0){
+                arr[k] = aux[i++];
+            }else{
+                arr[k] = arr[j++];
+            }
+        }
+    }
+
+    private static void swap(Comparable[] arr, int a, int b) {
         Comparable tmp = arr[a];
         arr[a] = arr[b];
         arr[b] = tmp;
@@ -79,7 +132,8 @@ public class SortUtil {
     public static void main(String[] args) {
         Integer[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
         //shellSort(arr);
-        quickSort(arr);
+        //quickSort(arr);
+        mergeSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
