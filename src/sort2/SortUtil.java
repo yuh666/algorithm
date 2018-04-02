@@ -122,6 +122,38 @@ public class SortUtil {
         }
     }
 
+    /**
+     * 原地堆排序
+     *
+     * @param arr
+     */
+    public static void heapSort(Comparable[] arr) {
+        //构建一个大顶堆
+        int N = arr.length;
+        for (int i = (N - 1) / 2; i >= 0; i--) {
+            shiftDown(arr, i, N - 1);
+        }
+        for (int i = N - 1; i > 0; ) {
+            swap(arr, 0, i--);
+            shiftDown(arr, 0, i);
+        }
+    }
+
+    private static void shiftDown(Comparable[] arr, int k, int l) {
+        while (2 * k + 1 <= l) {
+            int j = 2 * k + 1;
+            if (j + 1 <= l && arr[j].compareTo(arr[j + 1]) < 0) {
+                j++;
+            }
+            if (arr[k].compareTo(arr[j]) >= 0) {
+                break;
+            }
+            swap(arr, k, j);
+            k = j;
+        }
+    }
+
+
     private static void swap(Comparable[] arr, int a, int b) {
         Comparable tmp = arr[a];
         arr[a] = arr[b];
@@ -133,7 +165,8 @@ public class SortUtil {
         Integer[] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
         //shellSort(arr);
         //quickSort(arr);
-        mergeSort(arr);
+        //mergeSort(arr);
+        heapSort(arr);
         System.out.println(Arrays.toString(arr));
     }
 }
